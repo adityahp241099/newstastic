@@ -9,7 +9,7 @@ class DrawerOptions extends React.Component {
         }else{
             this.breadcrumbs = [];
         }
-        
+
         this.state = {
             'activated':false
         }
@@ -18,8 +18,8 @@ class DrawerOptions extends React.Component {
                 'activated':true
             }
         }
-        
-        
+
+
     }
     componentDidMount(){
     // eslint-disable-next-line
@@ -31,10 +31,10 @@ class DrawerOptions extends React.Component {
         var ctx = Context.getContext();
         ctx.breadcrumbs = this.breadcrumbs;
         this.props.parent.refreshPage(this);
-        
+
     }
 
-   
+
 
     render(){
         console.log();
@@ -49,6 +49,7 @@ class DrawerOptions extends React.Component {
         }else{
             return(
                 <p onClick={()=>{this.clickHandler()}} className="mdc-list-item mdc-list-item" href="" aria-current="page">
+                    {this.props.children}
                     <span className="mdc-list-item__ripple"></span>
                     <i className="material-icons mdc-list-item__graphic" aria-hidden="true">{this.props.icon}</i>
                     <span className="mdc-list-item__text">{this.props.label}</span>

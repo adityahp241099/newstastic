@@ -9,3 +9,6 @@ class ListPostsAPI(generics.ListAPIView):
 class ViewCategoryAPI(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = CategoryListSerializer
+class ViewPostAPI(generics.RetrieveAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer

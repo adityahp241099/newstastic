@@ -2,6 +2,9 @@ import React from 'react';
 import LinearProgress from '../widgets/LinearProgress.js';
 import Context from '../Context.js';
 import DefaultCard from '../widgets/cards/DefaultCard.js';
+import {Link} from 'react-router-dom';
+import Button from '../widgets/Button.js';
+import DefaultChip from '../widgets/DefaultChip.js';
 class LiveNews extends React.Component{
   constructor(props){
     super(props);
@@ -31,7 +34,29 @@ class LiveNews extends React.Component{
       //out.push(<hr key={"ContentRuler"+i} className="mdc-theme--primary-bg" />);
       //for(var j=0;j<content[i].articles.length;j++){
           var card = content[i];//content[i].articles[j];
-          out.push(<DefaultCard title={card.title} subtitle={"-"+card.author} body={card.body}/>);
+
+          out.push(<DefaultCard title={card.title} subtitle={"-"+card.author} body={card.body}>
+
+
+
+            <div className="mdc-card__primary-action">
+
+
+            </div>
+            <div className="mdc-card__actions">
+              <Link key={"article/"+card.id} style={{'textDecoration':'none'}} to={"article/"+card.id}>
+                <Button label="View More"/>
+              </Link>
+
+              <div className="mdc-card__action-icons">
+              <div className="mdc-card__action-buttons">
+                <DefaultChip text={card.category.label} icon={card.category.icon}/>
+              </div>
+                <button className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+                <button className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+              </div>
+            </div>
+          </DefaultCard>);
       //}
 
     }
