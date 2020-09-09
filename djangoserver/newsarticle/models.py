@@ -5,6 +5,7 @@ class Category(models.Model):
     class Meta:
         verbose_name_plural = "Categories"
     label = models.TextField("Category")
+    icon = models.TextField("Icon as per material.io",default='news')
     @property
     def articles(self):
         return Article.objects.filter(category=self)

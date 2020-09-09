@@ -2,7 +2,7 @@ import React from 'react';
 import {MDCDrawer} from "@material/drawer";
 import DrawerOptions from '../../widgets/DrawerOptions.js';
 import Context from '../../Context.js';
-
+import {Link} from 'react-router-dom';
 class Drawer extends React.Component {
   constructor(props){
     super(props);
@@ -52,10 +52,12 @@ class Drawer extends React.Component {
     return(
       <aside className="mdc-drawer mdc-drawer--dismissible">
         <div className="mdc-drawer__content">
+
           <nav className="mdc-list">
-            <DrawerOptions active={true} parent={this} key='nav_play'  breadcrumbs={['news','newspaper']} label='News' icon='newspaper' />
-            <DrawerOptions parent={this} key='nav_settings'  breadcrumbs={['settings']} label='Settings' icon='settings' />
+            <Link style={{'textDecoration':'none'}} to={"/"}><DrawerOptions active={true} parent={this} key='nav_play'  breadcrumbs={['news','newspaper']} label='News' icon='public'/></Link>
+            <Link style={{'textDecoration':'none'}} to={"/"}><DrawerOptions parent={this} key='nav_settings'  breadcrumbs={['settings']} label='Settings' icon='settings'/></Link>
           </nav>
+
         </div>
        </aside>
     );

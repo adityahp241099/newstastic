@@ -141,11 +141,11 @@ if DEBUG:
     # "http://192.168.0.119",
     #
     # ]
-    CORS_ORIGIN_WHITELIST = [
-    'http://localhost:3000',
-    'http://192.168.0.119:3000'
-    ]
-    #CORS_ALLOW_ALL_ORIGINS = True
+    # CORS_ORIGIN_WHITELIST = [
+    # 'http://localhost:3000',
+    # 'http://192.168.0.119:3000'
+    # ]
+    CORS_ALLOW_ALL_ORIGINS = True
     # CORS_ALLOWED_ORIGIN_REGEXES = [
     # r"^.",
     # ]

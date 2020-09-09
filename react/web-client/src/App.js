@@ -4,6 +4,8 @@ import Drawer from './navigation/Drawer/Drawer.js';
 import SelectedPage from './pages/SelectedPage.js';
 import Context from './Context.js';
 import LoginPage from './pages/LoginPage.js';
+import Article from './pages/Article.js';
+import {BrowserRouter as Router,Route,Switch, Redirect} from 'react-router-dom';
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -25,15 +27,25 @@ class App extends React.Component {
     if(this.state.loggedIn){
       return (
         <div className="App">
+          <Router>
           <Drawer refreshPage={this.refreshPage.bind(this)} />
           <div className="mdc-drawer-app-content">
             <TopAppBar parent={this} />
             <main className="main-content limited-container" id="main-content">
               <div className="mdc-top-app-bar--fixed-adjust">
-                <SelectedPage topappbar={this.topappbar} parent={this} ></SelectedPage>
+                <Switch>
+                <Route exact={true} path='/' component={()=>{return(<SelectedPage topappbar={this.topappbar} parent={this} ></SelectedPage>)}}/>
+                <Route exact={true} path='/article/:id' component={
+                    ({match})=>{
+                    return(<Article id={match.params.id}/>);
+                  }
+                }/>
+                <Redirect to={"/"}/>
+                </Switch>
               </div>
             </main>
           </div>
+          </Router>
         </div>
       );
     }else{
