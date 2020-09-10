@@ -6,6 +6,7 @@ import Context from './Context.js';
 import LoginPage from './pages/LoginPage.js';
 import Article from './pages/Article.js';
 import {BrowserRouter as Router,Route,Switch, Redirect} from 'react-router-dom';
+import SnackbarContainer from './widgets/Snackbar.js';
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -46,6 +47,7 @@ class App extends React.Component {
             </main>
           </div>
           </Router>
+          {SnackbarContainer.getContainer().renderable()}
         </div>
       );
     }else{

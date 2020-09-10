@@ -11,6 +11,7 @@ class Context{
     appname = 'Newstastic';
     isLoggedIn = true;
     apiHost = 'http://192.168.0.119:8000'
+    host = "http://192.168.0.119:3000";
     static getContext(){
         if(Context.instance === null){
             Context.instance = new Context();

@@ -2,6 +2,7 @@ import React from 'react';
 import CircularProgress from '../widgets/CircularProgress.js';
 import Context from '../Context.js';
 import DefaultChip from '../widgets/DefaultChip.js';
+import marked from 'marked';
 class Article extends React.Component{
   constructor(props){
     super(props);
@@ -47,15 +48,14 @@ class Article extends React.Component{
       );
     }else{
       var content = this.state.content;
+      var markdownText =  marked(content.body, {sanitize: true});
       return (
-        <div>
+        <div style={{"padding":"8px"}}>
           <h1 className="mdc-typography--headline4">{content.title}</h1>
           <DefaultChip text={content.category.label} icon={content.category.icon}/>
           <hr/>
           <h4 className="mdc-typography--subtitle">-<i>{content.author}</i></h4>
-          <span className="mdc-typography--body">
-            {content.body}
-          </span>
+          <div className="mdc-typography--body" style={{"textAlign":"justify"}} dangerouslySetInnerHTML={{__html:markdownText}}/>
         </div>
       );
     }
