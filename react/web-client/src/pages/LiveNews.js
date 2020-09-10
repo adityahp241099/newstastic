@@ -5,6 +5,8 @@ import DefaultCard from '../widgets/cards/DefaultCard.js';
 import {Link} from 'react-router-dom';
 import Button from '../widgets/Button.js';
 import DefaultChip from '../widgets/DefaultChip.js';
+import copyTextToClipboard from '../Clipboard.js';
+import SnackbarContainer from '../widgets/Snackbar.js';
 class LiveNews extends React.Component{
   constructor(props){
     super(props);
@@ -34,8 +36,11 @@ class LiveNews extends React.Component{
       //out.push(<hr key={"ContentRuler"+i} className="mdc-theme--primary-bg" />);
       //for(var j=0;j<content[i].articles.length;j++){
           var card = content[i];//content[i].articles[j];
-
-          out.push(<DefaultCard title={card.title} subtitle={"-"+card.author} body={card.body}>
+          var copyFunction = ()=>{
+            copyTextToClipboard(Context.getContext().host+"/article/"+card.id+"/")
+            SnackbarContainer.getContainer().addSnackbar("Copied to clipboard",[],1000);
+          }
+          out.push(<DefaultCard title={card.title} subtitle={"-"+card.author} body={card.preview}>
 
 
 
@@ -52,8 +57,8 @@ class LiveNews extends React.Component{
               <div className="mdc-card__action-buttons">
                 <DefaultChip text={card.category.label} icon={card.category.icon}/>
               </div>
-                <button className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-                <button className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="More options">more_vert</button>
+                <button onClick={()=>{copyFunction()}} className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
+
               </div>
             </div>
           </DefaultCard>);
