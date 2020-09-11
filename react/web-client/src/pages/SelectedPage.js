@@ -18,7 +18,6 @@ class SelectedPage extends React.Component{
     }
     refreshPage(nextPage){
        this.currentPage = nextPage;
-
        this.tabs.setActive(nextPage);
        this.getPage()
     }
@@ -44,6 +43,7 @@ class SelectedPage extends React.Component{
             page = this.state.PageInfo;
         }
         if(this.state.PageInfo instanceof Array){
+            
             return (
                 <div>
                     <Tabs refreshPage={this.refreshPage.bind(this)} parent={this} pages={this.state.PageInfo} active={this.currentPage}/>
@@ -80,6 +80,7 @@ class Content extends React.Component{
         }
     }
     render(){
+        this.props.parent.content = this;
         if(this.state.page){
             if(this.state.page.loaderKey in this.mapper){
                 var view = React.createElement(this.mapper[this.state.page.loaderKey],{'page':this.state.page});

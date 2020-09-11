@@ -10,6 +10,7 @@ class TextInput extends React.Component{
     }
     componentDidMount(){
         try{
+            // eslint-disable-next-line 
             const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
         }catch(e){
             console.log(e);

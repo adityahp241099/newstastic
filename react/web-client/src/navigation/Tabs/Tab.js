@@ -9,6 +9,7 @@ class Tabs extends React.Component{
         this.state={
             'active': this.props.active
         }
+
     }
     refreshPage(nextPage){
         this.props.refreshPage(nextPage);
@@ -18,7 +19,7 @@ class Tabs extends React.Component{
         var out = [];
         for(var page in this.pages){
             if(this.state.active.loaderKey === this.pages[page].loaderKey){
-                //console.log(this.state.active)
+                
                 out.push(
                     <Tab refreshPage={this.refreshPage.bind(this)} key={page} page={this.pages[page]} active={true} label={this.pages[page].title} tabIndex={page} />
                 )
@@ -27,7 +28,7 @@ class Tabs extends React.Component{
                     <Tab refreshPage={this.refreshPage.bind(this)} key={page} page={this.pages[page]} active={false} label={this.pages[page].title} tabIndex={page} />
                 )
             }
-            
+
         }
 
         return out;
@@ -36,6 +37,9 @@ class Tabs extends React.Component{
         this.setState({'active':nextPage});
     }
     render(){
+        this.pages = this.props.pages;
+        this.props.parent.tabs = this;
+
         return (
             <div className='mdc-tab-bar' role='tablist'>
             <div className='mdc-tab-scroller'>
@@ -65,12 +69,12 @@ class Tab extends React.Component{
     }
 
     render(){
-        
+
         if(this.props.active){
             return(
             <button id={'mdc-tab-'+this.props.page.loaderKey} onClick={()=>{this.props.refreshPage(this.props.page)}} className="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabIndex={this.props.tabIndex}>
                 <span className="mdc-tab__content">
-                    
+
                     <span className="mdc-tab__text-label">{this.props.label}</span>
                 </span>
                 <span className="mdc-tab-indicator mdc-tab-indicator--active">
@@ -82,7 +86,7 @@ class Tab extends React.Component{
         }else{
             return (
                 <button id={'mdc-tab-'+this.props.page.loaderKey} onClick={()=>{this.props.refreshPage(this.props.page)}} className="mdc-tab" role="tab" aria-selected="false" tabIndex={this.props.tabIndex}>
-                                <span className="mdc-tab__content">        
+                                <span className="mdc-tab__content">
                                     <span className="mdc-tab__text-label">{this.props.label}</span>
                                 </span>
                                 <span className="mdc-tab-indicator">
@@ -92,9 +96,8 @@ class Tab extends React.Component{
                 </button>
             );
         }
-        
+
     }
 }
 
 export default Tabs;
-

@@ -29,9 +29,15 @@ class App extends React.Component {
       return (
         <div className="App">
           <Router>
-          <Drawer refreshPage={this.refreshPage.bind(this)} />
+          <Drawer refreshPage={this.refreshPage.bind(this)} parent={this}>
+              <div className="mdc-drawer__header">
+                <h3 className="mdc-drawer__title">Newstastic</h3>
+                <h6 className="mdc-drawer__subtitle">Beta</h6>
+              </div>
+              <hr className="mdc-list-divider"/>
+          </Drawer>
           <div className="mdc-drawer-app-content">
-            <TopAppBar parent={this} />
+            <TopAppBar parent={this} disableEditable={true}/>
             <main className="main-content limited-container" id="main-content">
               <div className="mdc-top-app-bar--fixed-adjust">
                 <Switch>

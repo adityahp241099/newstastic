@@ -27,6 +27,7 @@ class DrawerOptions extends React.Component {
     this.props.parent.children.push(this);
     }
     clickHandler(){
+
         this.props.parent.setActive(this);
         var ctx = Context.getContext();
         ctx.breadcrumbs = this.breadcrumbs;
@@ -37,8 +38,9 @@ class DrawerOptions extends React.Component {
 
 
     render(){
-        console.log();
+
         if(this.state.activated){
+
             return(
             <p onClick={()=>{this.clickHandler()}} className="mdc-list-item mdc-list-item--activated" href="" aria-current="page">
                 <span className="mdc-list-item__ripple"></span>

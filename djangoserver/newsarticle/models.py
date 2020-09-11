@@ -6,6 +6,7 @@ class Category(models.Model):
         verbose_name_plural = "Categories"
     label = models.TextField("Category")
     icon = models.TextField("Icon as per material.io",default='news')
+    #Use article in filter
     @property
     def articles(self):
         return Article.objects.filter(category=self)
