@@ -1,12 +1,7 @@
 import React from 'react';
 import LinearProgress from '../widgets/LinearProgress.js';
 import Context from '../Context.js';
-import DefaultCard from '../widgets/cards/DefaultCard.js';
-import {Link} from 'react-router-dom';
-import Button from '../widgets/Button.js';
-import DefaultChip from '../widgets/DefaultChip.js';
-import copyTextToClipboard from '../Clipboard.js';
-import SnackbarContainer from '../widgets/Snackbar.js';
+import News from '../newstastic/News.js';
 class LiveNews extends React.Component{
   constructor(props){
     super(props);
@@ -20,7 +15,7 @@ class LiveNews extends React.Component{
     });
   }
   componentDidMount(){
-    console.log("Mounted");
+
     fetch(Context.getContext().apiHost+'/article/list/').then(
       (data)=>{this.loadData(data)}
     ).catch((error)=>{
@@ -31,39 +26,11 @@ class LiveNews extends React.Component{
   loadArticles(){
     var out = [];
     var content = this.state.content
+    if(content.length<1){
+      out.push(<div>No Posts to display</div>);
+    }
     for(var i = 0; i< content.length;i++){
-      //out.push(<h1 key={"ContentHeader"+i} className="mdc-typography--headline4 mdc-theme--primary">  {content[i].label}</h1>);
-      //out.push(<hr key={"ContentRuler"+i} className="mdc-theme--primary-bg" />);
-      //for(var j=0;j<content[i].articles.length;j++){
-          var card = content[i];//content[i].articles[j];
-          var copyFunction = ()=>{
-            copyTextToClipboard(Context.getContext().host+"/article/"+card.id+"/")
-            SnackbarContainer.getContainer().addSnackbar("Copied to clipboard",[],1000);
-          }
-          out.push(<DefaultCard title={card.title} subtitle={"-"+card.author} body={card.preview}>
-
-
-
-            <div className="mdc-card__primary-action">
-
-
-            </div>
-            <div className="mdc-card__actions">
-              <Link key={"article/"+card.id} style={{'textDecoration':'none'}} to={"article/"+card.id}>
-                <Button label="View More"/>
-              </Link>
-
-              <div className="mdc-card__action-icons">
-              <div className="mdc-card__action-buttons">
-                <DefaultChip text={card.category.label} icon={card.category.icon}/>
-              </div>
-                <button onClick={()=>{copyFunction()}} className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-
-              </div>
-            </div>
-          </DefaultCard>);
-      //}
-
+          out.push(new News(content[i]).toCard()) ;
     }
     return out;
   }

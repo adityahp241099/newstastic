@@ -7,7 +7,7 @@ from rest_framework import routers
 from . views import *
 
 urlpatterns = [
-    path("list/",ListPostsAPI.as_view(),name='newsarticle-list'),
-    path("category/",ViewCategoryAPI.as_view(),name='newsarticle-category'),
-    path("<int:pk>/",ViewPostAPI.as_view(),name='newsarticle')
+    path("list/",LiveAPI.as_view(),name='newstastic-live'),
+    path("category/",ViewNewspaperAPI.as_view(),name='newstastic-newspaper'),
+    path("<int:pk>/",ViewPostAPI.as_view(),name='newstastic-article')
 ]
