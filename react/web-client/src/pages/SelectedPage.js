@@ -2,10 +2,12 @@ import React from 'react';
 import Context from '../Context.js';
 
 import Tabs from '../navigation/Tabs/Tab.js';
-import StandardGames from './StandardGames.js';
+
 import ErrorPage from './ErrorPage.js';
 import TodaysNewspaper from './TodaysNewspaper.js';
 import LiveNews from './LiveNews.js';
+import CategoriesPage from './Categories.js';
+import About from './About.js';
 
 class SelectedPage extends React.Component{
     constructor(props){
@@ -15,6 +17,7 @@ class SelectedPage extends React.Component{
             'PageInfo': Context.getContext().getNavFromBreadCrumbs()
         }
 
+        this.content = null;
     }
     refreshPage(nextPage){
        this.currentPage = nextPage;
@@ -29,21 +32,23 @@ class SelectedPage extends React.Component{
         }
     }
     render(){
-        this.currentPage = null
+        this.currentPage = null;
         if(this.state.PageInfo instanceof Array){
 
             this.currentPage = this.state.PageInfo[0];
         }
         this.tabs = null;
-        this.content = null;
         var page = null;
         if(this.currentPage){
             page = this.currentPage;
         }else{
             page = this.state.PageInfo;
         }
+        if(this.content){
+          this.content.setState({"page":page});
+        }
         if(this.state.PageInfo instanceof Array){
-            
+
             return (
                 <div>
                     <Tabs refreshPage={this.refreshPage.bind(this)} parent={this} pages={this.state.PageInfo} active={this.currentPage}/>
@@ -51,6 +56,7 @@ class SelectedPage extends React.Component{
                 </div>
             );
         }else{
+
             return (
                 <div>
                     <Content parent={this} page={page}/>
@@ -72,11 +78,11 @@ class Content extends React.Component{
             'page':this.props.page
         }
         this.mapper = {
-            'standard':StandardGames,
-            'casual':StandardGames,
             'error':ErrorPage,
             'newspaper':TodaysNewspaper,
-            'live':LiveNews
+            'live':LiveNews,
+            'categories':CategoriesPage,
+            'about':About
         }
     }
     render(){

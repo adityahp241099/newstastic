@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+import datetime
 # Create your models here.
 class Category(models.Model):
     class Meta:
@@ -10,6 +11,9 @@ class Category(models.Model):
     @property
     def articles(self):
         return Article.objects.filter(category=self)
+    @property
+    def paperArticles(self):
+        return Article.objects.filter(category=self,posted_on__gt=timezone.datetime.today()-datetime.timedelta(days=1),posted_on__lt=timezone.datetime.today())
     def __str__(self):
         return self.label
 class Article(models.Model):

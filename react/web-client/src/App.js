@@ -7,6 +7,7 @@ import LoginPage from './pages/LoginPage.js';
 import Article from './pages/Article.js';
 import {BrowserRouter as Router,Route,Switch, Redirect} from 'react-router-dom';
 import SnackbarContainer from './widgets/Snackbar.js';
+import CategoryPage from './pages/Category.js';
 class App extends React.Component {
   constructor(props){
     super(props);
@@ -45,6 +46,11 @@ class App extends React.Component {
                 <Route exact={true} path='/article/:id' component={
                     ({match})=>{
                     return(<Article id={match.params.id}/>);
+                  }
+                }/>
+                <Route exact={true} path='/category/:id' component ={
+                  ({match})=>{
+                    return (<CategoryPage id={match.params.id}/>)
                   }
                 }/>
                 <Redirect to={"/"}/>

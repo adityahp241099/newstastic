@@ -2,7 +2,7 @@ import React from 'react';
 import LinearProgress from '../widgets/LinearProgress.js';
 import Context from '../Context.js';
 import News from '../newstastic/News.js';
-class TodaysNewspaper extends React.Component{
+class CategoryPage extends React.Component{
   constructor(props){
     super(props);
     this.state ={
@@ -16,7 +16,7 @@ class TodaysNewspaper extends React.Component{
   }
   componentDidMount(){
 
-    fetch(Context.getContext().apiHost+'/article/category/').then(
+    fetch(Context.getContext().apiHost+'/article/category/'+this.props.id+'/').then(
       (data)=>{this.loadData(data)}
     ).catch((error)=>{
         this.setState({'content' : false});
@@ -30,17 +30,17 @@ class TodaysNewspaper extends React.Component{
       out.push(<div>No Posts to display</div>);
 
     }
-    for(var i = 0; i< content.length;i++){
-      out.push(<h1 key={"ContentHeader"+i} className="mdc-typography--headline4 mdc-theme--primary">  {content[i].label}</h1>);
-      out.push(<hr key={"ContentRuler"+i} className="mdc-theme--primary-bg" />);
-      if(content[i].paperArticles.length<1){
+
+      out.push(<h1 key={"ContentHeader"} className="mdc-typography--headline4 mdc-theme--primary">  {content.label}</h1>);
+      out.push(<hr key={"ContentRuler"} className="mdc-theme--primary-bg" />);
+      if(content.articles.length<1){
         out.push(<div> This Section is empty.</div>);
       }
-      for(var j=0;j<content[i].paperArticles.length;j++){
-          out.push(new News(content[i].paperArticles[j]).toCard())
+      for(var j=0;j<content.articles.length;j++){
+          out.push(new News(content.articles[j]).toCard())
       }
 
-    }
+
     return out;
   }
   render(){
@@ -65,4 +65,4 @@ class TodaysNewspaper extends React.Component{
     }
   }
 }
-export default TodaysNewspaper;
+export default CategoryPage;

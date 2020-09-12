@@ -12,12 +12,12 @@ class Drawer extends React.Component {
     ]
   }
   refreshPage(){
-    
+
     this.props.refreshPage();
   }
   setActive(nav){
     for(var child in this.props.parent.children){
-        this.props.parent.children[child].setState({'activated':false});
+        this.props.parent.children[child].state.activated=false;
         if(this.props.parent.children[child].state.activated===true){
             this.props.parent.children[child].setState({'activated':false});
         }
@@ -56,10 +56,14 @@ class Drawer extends React.Component {
         <div className="mdc-drawer__content">
           <nav className="mdc-list">
             <Link style={{'textDecoration':'none'}} to={"/"}>
-            <DrawerOptions active={true} parent={this} key='nav_play'  breadcrumbs={['news','newspaper']} label='News' icon='public'/>
+            <DrawerOptions active={true} parent={this} key='nav_news'  breadcrumbs={['news','newspaper']} label='News' icon='public'/>
             </Link>
             <Link style={{'textDecoration':'none'}} to={"/"}>
-            <DrawerOptions parent={this} key='nav_settings'  breadcrumbs={['settings']} label='Settings' icon='settings'/></Link>
+              <DrawerOptions parent={this} key='nav_category'  breadcrumbs={['categories']} label='Categories' icon='category'/>
+            </Link>
+            <Link style={{'textDecoration':'none'}} to={"/"}>
+              <DrawerOptions parent={this} key='nav_about'  breadcrumbs={['about']} label='About' icon='info'/>
+            </Link>
           </nav>
 
         </div>

@@ -10,6 +10,12 @@ class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
         exclude = []
+class CategoryTodayListSerializer(serializers.ModelSerializer):
+    paperArticles = ArticleSerializer(many=True, read_only=True)
+    class Meta:
+        model = Category
+        fields = ['id','label','paperArticles']
+
 class CategoryListSerializer(serializers.ModelSerializer):
     articles = ArticleSerializer(many=True, read_only=True)
     class Meta:

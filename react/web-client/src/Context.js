@@ -24,7 +24,8 @@ class Context{
 
         this.apimapper = {
          'news':[new Page('Today\'s Newspaper','newspaper',null),new Page('Live','live',null) ],
-         'settings':new Page('Settings','settings',null)
+         'categories':new Page('Categories','categories',null),
+         'about':new Page('About','about',null)
         }
 
     }
