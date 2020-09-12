@@ -9,5 +9,7 @@ from . views import *
 urlpatterns = [
     path("list/",LiveAPI.as_view(),name='newstastic-live'),
     path("category/",ViewNewspaperAPI.as_view(),name='newstastic-newspaper'),
-    path("<int:pk>/",ViewPostAPI.as_view(),name='newstastic-article')
+    path("<int:pk>/",ViewPostAPI.as_view(),name='newstastic-article'),
+    path("categories/",ListCategoryAPI.as_view(),name='newstastic-categories'),
+    path("category/<int:pk>/",ViewCategoryAPI.as_view(),name='newstastic-category')
 ]
