@@ -17,7 +17,7 @@ class News{
     this.body = content.body;
     this.posted_on = content.posted_on;
     this.link = "/article/"+this.id;
-    this.url = Context.getContext().host+this.link+"/";
+    this.url = Context.getContext().hostname+this.link+"/";
   }
   copyFunction(){
     copyTextToClipboard(this.url)

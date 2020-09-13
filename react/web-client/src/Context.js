@@ -10,11 +10,12 @@ class Context{
     static instance = null;
     appname = 'Newstastic';
     isLoggedIn = true;
-    apiHost = 'http://192.168.0.119:8000/api';
-    host = "http://192.168.0.119:3000";
+    // apiHost = 'http://192.168.0.119:8000/api';
+    // host = "http://192.168.0.119:3000";
     //if builing for django
-    //apiHost = 'api';
-    //host = "";
+    apiHost = '/api';
+    host = "";
+    hostname = '172.105.41.91';
     static getContext(){
         if(Context.instance === null){
             Context.instance = new Context();
