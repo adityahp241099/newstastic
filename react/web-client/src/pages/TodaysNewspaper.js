@@ -2,6 +2,7 @@ import React from 'react';
 import LinearProgress from '../widgets/LinearProgress.js';
 import Context from '../Context.js';
 import News from '../newstastic/News.js';
+
 class TodaysNewspaper extends React.Component{
   constructor(props){
     super(props);

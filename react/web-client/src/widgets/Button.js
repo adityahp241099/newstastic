@@ -7,7 +7,7 @@ class Button extends React.Component{
   }
   render(){
     return (
-      <div className="mdc-touch-target-wrapper">
+      <div className="mdc-touch-target-wrapper" onClick={this.props.onClick}>
         <button className="mdc-button">
            <div className="mdc-button__ripple"></div>
            <span className="mdc-button__label">{this.props.label}</span>

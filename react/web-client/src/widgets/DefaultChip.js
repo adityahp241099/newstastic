@@ -3,11 +3,11 @@ import React from 'react';
 
 function Chip(props){
     return (
-      <div className="mdc-chip" role="row">
+      <div className="mdc-chip" role="link" >
         <div className="mdc-chip__ripple"></div>
         <span role="gridcell">
           <span role="button" tabIndex="0" className="mdc-chip__primary-action">
-            <span className="mdc-chip__text">{props.text}</span>
+            <span className="mdc-chip__text" aria-label={props.text} >{props.text}</span>
           </span>
         </span>
         <span role="gridcell">

@@ -7,6 +7,7 @@ import SnackbarContainer from '../widgets/Snackbar.js';
 import Button from '../widgets/Button.js';
 import Category from './Category';
 import marked from 'marked';
+import TextToVoice from '../widgets/TextToVoice';
 class News{
   constructor(content){
     this.id=content.id;
@@ -18,6 +19,7 @@ class News{
     this.posted_on = content.posted_on;
     this.link = "/article/"+this.id;
     this.url = Context.getContext().hostname+this.link+"/";
+    
   }
   copyFunction(){
     copyTextToClipboard(this.url)
@@ -36,8 +38,8 @@ class News{
         <div className="mdc-card__action-buttons">
           {this.category.toChip()}
         </div>
+          <TextToVoice text={this.preview}/>
           <button onClick={()=>{this.copyFunction()}} className="material-icons mdc-icon-button mdc-card__action mdc-card__action--icon" title="Share">share</button>
-
         </div>
       </div>
     </DefaultCard>);
